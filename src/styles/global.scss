@@ -1,0 +1,15 @@
+@import 'reset';
+
+body {
+  background-color: yellow;
+}
+
+.App {
+  position: relative;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  align-items: center;
+  justify-content: center;
+}
