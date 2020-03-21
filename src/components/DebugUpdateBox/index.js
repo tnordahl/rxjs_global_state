@@ -13,11 +13,7 @@ const DebugUpdateBox = ({ children, boxId }) => {
     globalStore.init();
   },[]);
 
-  console.log('globalState:::', globalState);
-  console.log('primary:::', primary);
-
   useEffect(() => {
-    console.log('update')
     if(globalState.data.theme[boxId]) {
       setPrimary(globalState.data.theme[boxId].primary);
     }

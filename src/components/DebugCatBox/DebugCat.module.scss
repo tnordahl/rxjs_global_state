@@ -1,0 +1,13 @@
+.Debug_Cat_Box {
+  position: relative;
+  width: calc(100% - 60px);
+  height: calc(100% - 60px);
+  align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: all;
+
+  overflow: hidden;
+  cursor: pointer;
+}

@@ -1,7 +1,7 @@
 import { BehaviorSubject } from 'rxjs';
 
 import { initialState as theme, setBackgroundColor } from './reducers/theme';
-import { initialState as appState} from './reducers/appState';
+import { initialState as cats, setImageLoading, getCatImage, resetCatImage} from './reducers/cats';
 
 // STATE
 const subject = new BehaviorSubject();
@@ -9,7 +9,7 @@ const subject = new BehaviorSubject();
 const initialState = {
   data: {
     theme,
-    appState
+    cats
   },
   newDataCount: 0,
 };
@@ -29,7 +29,21 @@ const globalStore = {
     subject.next(state);
   },
 
-  clearGlobalStatt: () => {
+  updateCatImage: async () => {
+    let newState  = {...state, newDataCount: state.newDataCount + 1}
+    newState = setImageLoading(true, newState);
+    subject.next(newState);
+
+    newState = resetCatImage(newState);
+    subject.next(newState);
+
+    newState = await getCatImage(newState);
+    newState = setImageLoading(false, newState);
+
+    subject.next(newState);
+  },
+
+  clearGlobalState: () => {
     state = initialState;
     subject.next(state);
   },
