@@ -1,14 +1,12 @@
-import React, { useEffect, useState, useLayoutEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import globalStore from '../../state/globalStore';
-
-import './DebugBox.module';
 
 const DebugUpdateBox = ({ children, boxId }) => {
   const [globalState, setGlobalState] = useState(globalStore.state);
   const [primary, setPrimary] = useState(globalState.data.theme.primary);
 
-  useLayoutEffect(()=> {
+  useEffect(()=> {
     globalStore.subscribe(setGlobalState);
     globalStore.init();
   },[]);

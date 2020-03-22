@@ -1,14 +1,12 @@
-import React, { useEffect, useState, useLayoutEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import globalStore from '../../state/globalStore';
-
-import './DebugCat.module';
 
 const DebugCatBox = () => {
   const [globalState, setGlobalState] = useState(globalStore.state);
   const [catImage, setCatImage] = useState(globalState.data.cats.currentCatUrl);
 
-  useLayoutEffect(()=> {
+  useEffect(()=> {
     globalStore.subscribe(setGlobalState);
     globalStore.init();
   },[]);

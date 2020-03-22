@@ -1,5 +1,5 @@
 const webpack = require("webpack");
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -8,7 +8,7 @@ const path = require('path');
 const isDevelopment = process.env.NODE_ENV === 'development'
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: ['webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000', "./src/client/index.js"],
   mode: "development",
   module: {
     rules: [
@@ -23,9 +23,9 @@ module.exports = {
         use: ["style-loader", "css-loader"]
       },
       {
-        test: /\.scss$/,
-        use: ['style-loader', 'css-loader','sass-loader']
-      },
+      test: /\.scss$/,
+      use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
+    },
     ]
   },
 
@@ -44,7 +44,10 @@ module.exports = {
     hotOnly: true
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.scss']
+    extensions: ['.js', '.jsx', '.scss'],
+    alias: {
+      'react-dom': '@hot-loader/react-dom',
+    },
   },
   optimization: {
     minimizer: [
@@ -66,11 +69,11 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({
-    title: 'Custom template',
-    // Load a custom template (lodash by default)
-    template: 'src/markup/index.html'
-  }),
+  //   new HtmlWebpackPlugin({
+  //   title: 'Custom template',
+  //   // Load a custom template (lodash by default)
+  //   template: 'src/markup/index.html'
+  // }),
     // new MiniCssExtractPlugin({
     //   filename: isDevelopment ? '[name].css' : '[name].[hash].css',
     //   chunkFilename: isDevelopment ? '[id].css' : '[id].[hash].css'
