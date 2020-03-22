@@ -15,7 +15,6 @@ export const setBackgroundColor = (color, id, state) => {
   get(newState, path)[id].primary = color;
   newState = {
     ...newState,
-    newDataCount: state.newDataCount + 1
   };
 
   return newState;

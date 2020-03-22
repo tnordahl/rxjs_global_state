@@ -9,16 +9,11 @@ export const initialState = {
 const path = 'data.cats';
 
 export const setImageLoading = (isLoading, state) => {
-  let newState = {
+  const newState = {
     ...state
   }
 
   get(newState, path).imageLoading = isLoading;
-
-  newState = {
-    ...newState,
-    newDataCount: state.newDataCount + 1
-  };
 
   return newState;
 };

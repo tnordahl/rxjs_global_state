@@ -11,14 +11,13 @@ const initialState = {
     theme,
     cats
   },
-  newDataCount: 0,
 };
 
 let state = initialState;
 
 const globalStore = {
   init: () => {
-    state = {...state, newDataCount: 0}
+    state = {...state}
     subject.next(state)
   },
   subscribe: setState => subject.subscribe(setState),
@@ -30,7 +29,7 @@ const globalStore = {
   },
 
   updateCatImage: async () => {
-    let newState  = {...state, newDataCount: state.newDataCount + 1}
+    let newState  = {...state}
     newState = setImageLoading(true, newState);
     subject.next(newState);
 
