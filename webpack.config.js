@@ -1,4 +1,5 @@
 const webpack = require("webpack");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -25,46 +26,13 @@ module.exports = {
         test: /\.scss$/,
         use: ['style-loader', 'css-loader','sass-loader']
       },
-      // {
-      //   test: /\.module\.s(a|c)ss$/,
-      //   loader: [
-      //     isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
-      //     {
-      //       loader: 'css-loader',
-      //       options: {
-      //         modules: true,
-      //         sourceMap: isDevelopment
-      //       }
-      //     },
-      //     {
-      //       loader: 'sass-loader',
-      //       options: {
-      //         sourceMap: isDevelopment
-      //       }
-      //     }
-      //   ]
-      // },
-      // {
-      //   test: /\.s(a|c)ss$/,
-      //   exclude: /\.module.(s(a|c)ss)$/,
-      //   loader: [
-      //     isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
-      //     'css-loader',
-      //     {
-      //       loader: 'sass-loader',
-      //       options: {
-      //         sourceMap: isDevelopment
-      //       }
-      //     }
-      //   ]
-      // }
     ]
   },
 
   // resolve: { extensions: ["*", ".js", ".jsx"] },
   output: {
     path: path.resolve(__dirname, "dist/"),
-    publicPath: "/dist/",
+    // publicPath: "/dist/",
     filename: "bundle.js",
      chunkFilename: '[name].bundle.js',
   },
@@ -98,6 +66,11 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+    title: 'Custom template',
+    // Load a custom template (lodash by default)
+    template: 'src/markup/index.html'
+  }),
     // new MiniCssExtractPlugin({
     //   filename: isDevelopment ? '[name].css' : '[name].[hash].css',
     //   chunkFilename: isDevelopment ? '[id].css' : '[id].[hash].css'
