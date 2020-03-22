@@ -14,6 +14,8 @@ const DebugUpdateBox = ({ children, boxId }) => {
   useEffect(() => {
     if(globalState.data.theme[boxId]) {
       setPrimary(globalState.data.theme[boxId].primary);
+    } else {
+      globalStore.setBackgroundColor(primary, boxId);
     }
   })
 
