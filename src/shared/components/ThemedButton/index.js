@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import globalStore from '../../state/globalStore';
+import { hot } from 'react-hot-loader/root';
 
 const ThemedButton = () => {
   const [globalState, setGlobalState] = useState(globalStore.state);
@@ -37,4 +38,4 @@ const ThemedButton = () => {
   );
 };
 
-export default ThemedButton;
+export default hot(ThemedButton);

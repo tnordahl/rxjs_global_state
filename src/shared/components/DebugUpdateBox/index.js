@@ -28,7 +28,7 @@ const DebugUpdateBox = ({ children, boxId }) => {
       style={
         {
           backgroundColor: primary,
-          border: `1px solid pink`,
+          border: '2px solid lightblue',
           zIndex: boxId
         }
       }

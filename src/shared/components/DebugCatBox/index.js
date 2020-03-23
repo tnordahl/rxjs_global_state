@@ -21,7 +21,7 @@ const DebugCatBox = () => {
       className='Debug_Cat_Box'
       tabIndex='0'
       onKeyDown={() => null}
-      style={{backgroundColor: 'orange', border: `1px solid indigo`}}
+      style={{backgroundColor: 'orange'}}
       onClick={(e) => {
         e.stopPropagation();
         return globalStore.updateCatImage();
