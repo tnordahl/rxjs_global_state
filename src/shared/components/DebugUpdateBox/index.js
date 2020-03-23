@@ -4,7 +4,7 @@ import globalStore from '../../state/globalStore';
 
 const DebugUpdateBox = ({ children, boxId }) => {
   const [globalState, setGlobalState] = useState(globalStore.state);
-  const [primary, setPrimary] = useState(globalState.data.theme.primary);
+  const [primary, setPrimary] = useState(globalState.data.theme.inactiveColor);
 
   useEffect(()=> {
     globalStore.subscribe(setGlobalState);
@@ -12,12 +12,12 @@ const DebugUpdateBox = ({ children, boxId }) => {
   },[]);
 
   useEffect(() => {
-    if(globalState.data.theme[boxId]) {
-      setPrimary(globalState.data.theme[boxId].primary);
+    if(globalState.data.theme.activeElements[boxId] || globalState.data.theme.activeElements.all) {
+      setPrimary(globalState.data.theme.activeColor);
     } else {
-      globalStore.setBackgroundColor(primary, boxId);
+      setPrimary(globalState.data.theme.inactiveColor);
     }
-  })
+  }, [Object.keys(globalState.data.theme.activeElements)])
 
   return (
     <div
@@ -25,10 +25,16 @@ const DebugUpdateBox = ({ children, boxId }) => {
       className='Debug_Box'
       tabIndex='0'
       onKeyDown={() => null}
-      style={{backgroundColor: primary, border: `1px solid pink`, zIndex: boxId}}
+      style={
+        {
+          backgroundColor: primary,
+          border: `1px solid pink`,
+          zIndex: boxId
+        }
+      }
       onClick={(e) => {
         e.stopPropagation();
-        return globalStore.setBackgroundColor(primary === 'green' ? 'blue' : 'green', boxId);
+        return globalStore.setElementActive(boxId);
       }
     }
     >

@@ -2,9 +2,10 @@ import React, { useMemo } from 'react';
 import ThemedButton from '../ThemedButton';
 import DebugUpdateBox from '../DebugUpdateBox';
 import DebugCatBox from '../DebugCatBox';
+import ColorPicker from '../ColorPicker';
 
 const DebugBoxContainer = () => {
-  const Box0 = useMemo(() => <DebugUpdateBox boxId={0} />);
+  const Box0 = useMemo(() => <ColorPicker />);
   const Box1 = useMemo(() => <DebugCatBox />);
 
   return (
@@ -21,7 +22,6 @@ const DebugBoxContainer = () => {
           </DebugUpdateBox>
         </DebugUpdateBox>
       </DebugUpdateBox>
-
     </div>
   );
 }

@@ -2,34 +2,47 @@
 import { get } from 'lodash';
 
 export const initialState = {
-  primary: 'green',
+  activeColor: 'green',
+  inactiveColor: 'blue',
+  activeElements: {}
 };
 
 const path = 'data.theme';
 
-export const setBackgroundColor = (color, id, state) => {
+export const setElementActive = (id, state) => {
+
   let newState = {...state};
   const themeState = get(newState, path);
 
-  if(id !== 'all') {
-    if(!get(newState, path)[id]) {
-      themeState[id] = {};
-    }
-    themeState[id].primary = color;
-  } else {
-    for (let [key, value] of Object.entries(themeState)) {
-      if(key === 'primary') {
-        themeState[key] = color;
-      } else {
-        themeState[key].primary = color;
-      }
-    }
+  if(themeState.activeElements[id]) {
+    delete themeState.activeElements[id];
+  } else if(id === 'all'){
+    themeState.activeElements = {
+      all: 'active',
+    };
+  }
+  else {
+    themeState.activeElements[id] = 'active';
   }
 
   newState = {
     ...newState,
     ...themeState,
   }
-  
+
+  return newState;
+}
+
+export const setBackgroundColor = (color, state) => {
+  let newState = {...state};
+  const themeState = get(newState, path);
+
+  themeState.activeColor = color;
+
+  newState = {
+    ...newState,
+    ...themeState,
+  }
+
   return newState;
 };
