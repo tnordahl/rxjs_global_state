@@ -1,6 +1,6 @@
 import { BehaviorSubject } from 'rxjs';
 
-import { initialState as theme, setBackgroundColor, setElementActive } from './reducers/theme';
+import { initialState as theme, setBackgroundColor, setElementActive, registerElement } from './reducers/theme';
 import { initialState as cats, setImageLoading, getCatImage, resetCatImage} from './reducers/cats';
 
 // STATE
@@ -40,6 +40,11 @@ const globalStore = {
     newState = setImageLoading(false, newState);
 
     subject.next(newState);
+  },
+
+  registerElement: (id) => {
+    state = registerElement(id, state)
+    subject.next(state);
   },
 
   setElementActive: (id) => {

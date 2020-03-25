@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import globalStore from '../../state/globalStore';
-import { hot } from 'react-hot-loader/root';
 
 const ThemedButton = () => {
   const [globalState, setGlobalState] = useState(globalStore.state);
   const [primary, setPrimary] = useState(globalState.data.theme.inactiveColor);
+  const [all, setAll] = useState(false);
 
   useEffect(()=> {
     globalStore.subscribe(setGlobalState);
@@ -12,11 +12,16 @@ const ThemedButton = () => {
   },[]);
 
   useEffect(() => {
-    if(globalState.data.theme.activeElements.all) {
+    // if(globalState.data.theme.activeElements.all) {
+    const allChecked = Object.values(globalState.data.theme.activeElements).every( (val, i, arr) => val === true );
+
+    if(allChecked) {
       setPrimary(globalState.data.theme.activeColor);
     } else {
       setPrimary(globalState.data.theme.inactiveColor);
     }
+
+    setAll(allChecked);
 
   }, [Object.keys(globalState.data.theme.activeElements)])
 
@@ -30,7 +35,7 @@ const ThemedButton = () => {
       }}
     >
       {
-        globalState.data.theme.activeElements.all
+        all
         ? 'All inactive!'
         : 'All active!'
       }
@@ -38,4 +43,4 @@ const ThemedButton = () => {
   );
 };
 
-export default hot(ThemedButton);
+export default ThemedButton;

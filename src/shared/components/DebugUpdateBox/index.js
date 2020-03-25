@@ -9,10 +9,11 @@ const DebugUpdateBox = ({ children, boxId }) => {
   useEffect(()=> {
     globalStore.subscribe(setGlobalState);
     globalStore.init();
+    globalStore.registerElement(boxId);
   },[]);
 
   useEffect(() => {
-    if(globalState.data.theme.activeElements[boxId] || globalState.data.theme.activeElements.all) {
+    if(globalState.data.theme.activeElements[boxId]) {
       setPrimary(globalState.data.theme.activeColor);
     } else {
       setPrimary(globalState.data.theme.inactiveColor);
