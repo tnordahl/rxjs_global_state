@@ -1,5 +1,8 @@
 # RxJS global state
 a proof of concept for using RxJS as global state with side effects handling
 
+## install packages
 ```yarn```
-```yanr run watch``
+
+## run site
+```yarn run watch```
