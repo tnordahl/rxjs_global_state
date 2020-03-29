@@ -8,11 +8,9 @@ const ThemedButton = () => {
 
   useEffect(()=> {
     globalStore.subscribe(setGlobalState);
-    globalStore.init();
   },[]);
 
   useEffect(() => {
-    // if(globalState.data.theme.activeElements.all) {
     const allChecked = Object.values(globalState.data.theme.activeElements).every( (val, i, arr) => val === true );
 
     if(allChecked) {

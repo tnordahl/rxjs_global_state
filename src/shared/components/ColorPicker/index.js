@@ -18,7 +18,6 @@ const ColorPicker = () => {
 
   useEffect(()=> {
     globalStore.subscribe(setGlobalState);
-    globalStore.init();
   },[]);
 
   useEffect(() => {

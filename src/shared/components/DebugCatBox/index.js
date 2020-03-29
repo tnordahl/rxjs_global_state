@@ -8,7 +8,6 @@ const DebugCatBox = () => {
 
   useEffect(()=> {
     globalStore.subscribe(setGlobalState);
-    globalStore.init();
   },[]);
 
   useEffect(() => {
@@ -31,7 +30,7 @@ const DebugCatBox = () => {
       {
         catImage
         ? <img alt='a cat' src={catImage}/>
-        : globalState.data.cats.imageLoading ? 'loading an amazing cat' : 'you want cat!'
+      : globalState.data.cats.imageLoading ? 'loading an amazing cat' : 'you want catz!'
       }
     </div>
   );

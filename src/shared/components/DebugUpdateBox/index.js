@@ -8,7 +8,6 @@ const DebugUpdateBox = ({ children, boxId }) => {
 
   useEffect(()=> {
     globalStore.subscribe(setGlobalState);
-    globalStore.init();
     globalStore.registerElement(boxId);
   },[]);
 

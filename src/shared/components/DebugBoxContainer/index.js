@@ -12,19 +12,13 @@ class DebugBoxContainer extends Component {
   }
 
   componentDidMount() {
-    globalStore.init();
     globalStore.setBackgroundColor('yellow');
 
     this.sub = globalStore.subscribe(() => {
-      this.state = globalStore.state;
       this.setState({
         ...globalStore.state
       })
     });
-  }
-
-  componentDidUpdate = () => {
-    console.log(this.props);
   }
 
   render() {

@@ -16,10 +16,6 @@ const initialState = {
 let state = initialState;
 
 const globalStore = {
-  init: () => {
-    state = {...state}
-    subject.next(state)
-  },
   subscribe: setState => subject.subscribe(setState),
 
   // ACTIONS
