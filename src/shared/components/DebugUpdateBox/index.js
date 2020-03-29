@@ -39,7 +39,7 @@ const DebugUpdateBox = ({ children, boxId }) => {
     }
     >
       <div className='Debug-Box__checked-message'>{
-          globalState.data.theme.activeElements[boxId]
+          globalState.data.theme.activeElements[boxId] === true
           ? 'active'
           : 'inactive '
         }</div>

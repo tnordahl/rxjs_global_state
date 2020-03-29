@@ -3,7 +3,7 @@ import { get } from 'lodash';
 
 export const initialState = {
   activeColor: 'green',
-  inactiveColor: 'blue',
+  inactiveColor: 'indigo',
   activeElements: {}
 };
 

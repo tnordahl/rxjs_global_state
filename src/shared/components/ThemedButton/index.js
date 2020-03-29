@@ -11,15 +11,16 @@ const ThemedButton = () => {
   },[]);
 
   useEffect(() => {
-    const allChecked = Object.values(globalState.data.theme.activeElements).every( (val, i, arr) => val === true );
+    const activeElements = Object.values(globalState.data.theme.activeElements)
+    const allChecked = activeElements.every( (val, i, arr) => val === true );
 
-    if(allChecked) {
+    if(activeElements.length && allChecked) {
       setPrimary(globalState.data.theme.activeColor);
     } else {
       setPrimary(globalState.data.theme.inactiveColor);
     }
 
-    setAll(allChecked);
+    setAll(activeElements.length && allChecked);
 
   }, [Object.keys(globalState.data.theme.activeElements)])
 

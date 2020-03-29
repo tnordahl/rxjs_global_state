@@ -14,7 +14,7 @@ const inputStyles = {
 
 const ColorPicker = () => {
   const [globalState, setGlobalState] = useState(globalStore.state);
-  const [primary, setPrimary] = useState(globalState.data.theme.inactiveColor);
+  const [primary, setPrimary] = useState(globalState.data.theme.activeColor);
 
   useEffect(()=> {
     globalStore.subscribe(setGlobalState);

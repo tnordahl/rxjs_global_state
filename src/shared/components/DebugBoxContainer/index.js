@@ -12,8 +12,6 @@ class DebugBoxContainer extends Component {
   }
 
   componentDidMount() {
-    globalStore.setBackgroundColor('yellow');
-
     this.sub = globalStore.subscribe(() => {
       this.setState({
         ...globalStore.state
