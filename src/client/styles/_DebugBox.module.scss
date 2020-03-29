@@ -1,4 +1,4 @@
-.Debug_Box {
+.Debug-Box {
   position: relative;
   width: calc(100% - 60px);
   height: calc(100% - 60px);
@@ -7,4 +7,12 @@
   align-items: center;
   justify-content: center;
   pointer-events: all;
+
+  &__checked-message {
+    position: absolute;
+    align-self:flex-start;
+    color: white;
+    padding-top: 5px;
+  }
+
 }
