@@ -4,7 +4,7 @@ import { initialState as theme, setBackgroundColor, setElementActive, registerEl
 import { initialState as cats, setImageLoading, getCatImage, resetCatImage} from './reducers/cats';
 
 // STATE
-const subject = new BehaviorSubject();
+const subject = new BehaviorSubject(null);
 
 const initialState = {
   data: {
@@ -20,11 +20,11 @@ const globalStore = {
     state = {...state}
     subject.next(state)
   },
- 
-  subscribe: setState => subject.subscribe(setState),
+
+  subscribe: (setState:any) => subject.subscribe(setState),
 
   // ACTIONS
-  setBackgroundColor: (color) => {
+  setBackgroundColor: (color:string) => {
     state = setBackgroundColor(color, state)
     subject.next(state);
   },
@@ -43,12 +43,12 @@ const globalStore = {
     subject.next(newState);
   },
 
-  registerElement: (id) => {
+  registerElement: (id: number) => {
     state = registerElement(id, state)
     subject.next(state);
   },
 
-  setElementActive: (id) => {
+  setElementActive: (id:number) => {
     state = setElementActive(id, state)
     subject.next(state);
   },

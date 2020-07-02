@@ -1,25 +1,33 @@
 const webpack = require("webpack");
 // const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 
 const path = require('path');
+
 const isDevelopment = process.env.NODE_ENV === 'development'
+const mode = 'development'; // isDevelopment ? 'development' : 'production';
 
 module.exports = {
   entry: isDevelopment
-  ? ['webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000', "./src/client/index.js"]
-  : ["./src/client/index.js"],
-  mode: isDevelopment ? 'development' : 'production',
+  ? ['webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000', "./src/client/index.tsx"]
+  : ["./src/client/index.tsx"],
+  mode,
   output: {
     path: path.resolve(__dirname, "dist/"),
     filename: "bundle.js",
     chunkFilename: '[name].bundle.js',
+    publicPath: '',
   },
 
   module: {
     rules: [
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
       {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules|bower_components)/,
@@ -53,7 +61,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.js', '.jsx', '.scss'],
+    extensions: ['.tsx', '.ts', '.js', '.jsx', '.scss'],
     alias: {
       'react-dom': '@hot-loader/react-dom',
     },

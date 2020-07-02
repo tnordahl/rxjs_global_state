@@ -18,7 +18,7 @@ const DebugCatBox = () => {
     <div
       role='button'
       className='Debug_Cat_Box'
-      tabIndex='0'
+      tabIndex={0}
       onKeyDown={() => null}
       style={{backgroundColor: 'orange'}}
       onClick={(e) => {

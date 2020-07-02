@@ -7,7 +7,7 @@ const distPath = path.resolve(__dirname, 'dist');
 module.exports = {
   context: srcPath,
   mode: 'development',
-  entry: './server/index.js',
+  entry: './server/index.tsx',
   output: {
     path: distPath,
     filename: 'server.js',
@@ -21,13 +21,18 @@ module.exports = {
   },
   resolve: {
     modules: ['node_modules', 'src'],
-    extensions: ['*', '.js', '.json', '.scss'],
+    extensions: ['.ts', '.tsx', '.js', '.json', '.scss'],
     alias: {
       'react-dom': '@hot-loader/react-dom',
     },
   },
   module: {
     rules: [
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
       {
         test: /\.js$/,
         exclude: /node_modules/,

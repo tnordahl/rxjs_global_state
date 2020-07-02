@@ -2,7 +2,12 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import globalStore from '../../state/globalStore';
 
-const DebugUpdateBox = ({ children, boxId }) => {
+type DebugUpdateBoxTypes = {
+  children:object,
+  boxId: number,
+}
+
+const DebugUpdateBox = ({ children, boxId }: DebugUpdateBoxTypes) => {
   const [globalState, setGlobalState] = useState(globalStore.state);
   const [primary, setPrimary] = useState(globalState.data.theme.inactiveColor);
 
@@ -23,7 +28,7 @@ const DebugUpdateBox = ({ children, boxId }) => {
     <div
       role='button'
       className='Debug-Box'
-      tabIndex='0'
+      tabIndex={0}
       onKeyDown={() => null}
       style={
         {

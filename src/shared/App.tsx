@@ -1,6 +1,6 @@
 import { hot } from 'react-hot-loader/root';
 import React, { useEffect } from 'react';
-import DebugBoxContainer from "./components/DebugBoxContainer";
+import DebugBoxContainer from './components/DebugBoxContainer';
 import globalStore from './state/globalStore';
 
 

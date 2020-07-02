@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
 import globalStore from '../../state/globalStore';
 
-const ThemedButton = () => {
+const ThemedButton:FunctionComponent = () => {
   const [globalState, setGlobalState] = useState(globalStore.state);
   const [primary, setPrimary] = useState(globalState.data.theme.inactiveColor);
   const [all, setAll] = useState(false);
@@ -12,7 +12,7 @@ const ThemedButton = () => {
 
   useEffect(() => {
     const activeElements = Object.values(globalState.data.theme.activeElements)
-    const allChecked = activeElements.every( (val, i, arr) => val === true );
+    const allChecked = activeElements.every( (val) => val === true );
 
     if(activeElements.length && allChecked) {
       setPrimary(globalState.data.theme.activeColor);
