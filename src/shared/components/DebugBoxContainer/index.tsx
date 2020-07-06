@@ -57,8 +57,8 @@ class DebugBoxContainer extends Component<DebugBoxTypes, DebugBoxState> {
         <DebugUpdateBox boxId={1}>
           <DebugUpdateBox boxId={2}>
             <DebugUpdateBox boxId={3}>
-               <ThemedButton />
-              </DebugUpdateBox>
+              <ThemedButton />
+            </DebugUpdateBox>
             </DebugUpdateBox>
           </DebugUpdateBox>
         </DebugUpdateBox>
