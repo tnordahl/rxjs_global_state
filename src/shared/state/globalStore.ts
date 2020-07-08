@@ -1,12 +1,19 @@
 import { BehaviorSubject } from 'rxjs';
 
-import { initialState as theme, setBackgroundColor, setElementActive, registerElement } from './reducers/theme';
-import { initialState as cats, setImageLoading, getCatImage, resetCatImage} from './reducers/cats';
+import { initialState as theme, ThemeState, setBackgroundColor, setElementActive, registerElement } from './reducers/theme';
+import { initialState as cats, CatsState, setImageLoading, getCatImage, resetCatImage} from './reducers/cats';
 
 // STATE
 const subject = new BehaviorSubject(null);
 
-const initialState = {
+export interface State {
+  data: {
+    theme: ThemeState,
+    cats: CatsState
+  };
+}
+
+const initialState: State = {
   data: {
     theme,
     cats
@@ -48,7 +55,7 @@ const globalStore = {
     subject.next(state);
   },
 
-  setElementActive: (id:number) => {
+  setElementActive: (id:number | string) => {
     state = setElementActive(id, state)
     subject.next(state);
   },
