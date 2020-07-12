@@ -1,9 +1,9 @@
 
 import { get } from 'lodash';
 import { string, number } from 'prop-types';
-import { State } from '../globalStore';
+import { IState } from '../globalStore';
 
-export interface ThemeState {
+export interface IThemeState {
     activeColor: string,
     inactiveColor: string;
     activeElements: {
@@ -11,7 +11,7 @@ export interface ThemeState {
     };
 }
 
-export const initialState: ThemeState = {
+export const initialState: IThemeState = {
   activeColor: 'green',
   inactiveColor: 'indigo',
   activeElements: {},
@@ -19,7 +19,7 @@ export const initialState: ThemeState = {
 
 const path = 'data.theme';
 
-export const setElementActive = (id: string | number, state: State) => {
+export const setElementActive = (id: string | number, state: IState) => {
 
   let newState = {...state};
   const themeState = get(newState, path);
@@ -45,7 +45,7 @@ export const setElementActive = (id: string | number, state: State) => {
   return newState;
 }
 
-export const registerElement = (id: number, state: State) => {
+export const registerElement = (id: number, state: IState) => {
 
   let newState = {...state};
   const themeState = get(newState, path);
@@ -60,7 +60,7 @@ export const registerElement = (id: number, state: State) => {
   return newState;
 }
 
-export const setBackgroundColor = (color: string, state: State) => {
+export const setBackgroundColor = (color: string, state: IState) => {
   let newState = {...state};
   const themeState = get(newState, path);
 

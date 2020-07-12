@@ -1,4 +1,4 @@
-export default (src) => {
+export default (src: string) => {
   return new Promise((resolve, reject) => {
     let img = new Image()
     img.onload = () => resolve(img.src)

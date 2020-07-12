@@ -1,14 +1,14 @@
 import { get } from 'lodash';
 import preloadImage from '../../libs/preloadImage';
-import { State } from '../globalStore';
+import { IState } from '../globalStore';
 
-export interface CatsState {
+export interface ICatsState {
   imageLoading: boolean;
   currentCatUrl: string;
   newDataCount: number;
 }
 
-export const initialState: CatsState = {
+export const initialState: ICatsState = {
   imageLoading: false,
   currentCatUrl: null,
   newDataCount: 0,
@@ -16,7 +16,7 @@ export const initialState: CatsState = {
 
 const path = 'data.cats';
 
-export const setImageLoading = (isLoading: boolean, state: State) => {
+export const setImageLoading = (isLoading: boolean, state: IState) => {
   const newState = {
     ...state
   }
@@ -26,7 +26,7 @@ export const setImageLoading = (isLoading: boolean, state: State) => {
   return newState;
 };
 
-export const resetCatImage = (state: State) => {
+export const resetCatImage = (state: IState) => {
   const newState = {
     ...state
   }
@@ -37,7 +37,7 @@ export const resetCatImage = (state: State) => {
   return newState;
 };
 
-export const getCatImage = async (state: State) => {
+export const getCatImage = async (state: IState) => {
   const newState = {...state};
 
   const response = await fetch('https://api.thecatapi.com/v1/images/search?size=full');

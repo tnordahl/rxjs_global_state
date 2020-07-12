@@ -1,19 +1,19 @@
 import { BehaviorSubject } from 'rxjs';
 
-import { initialState as theme, ThemeState, setBackgroundColor, setElementActive, registerElement } from './reducers/theme';
-import { initialState as cats, CatsState, setImageLoading, getCatImage, resetCatImage} from './reducers/cats';
+import { initialState as theme, IThemeState, setBackgroundColor, setElementActive, registerElement } from './reducers/theme';
+import { initialState as cats, ICatsState, setImageLoading, getCatImage, resetCatImage} from './reducers/cats';
 
 // STATE
 const subject = new BehaviorSubject(null);
 
-export interface State {
+export interface IState {
   data: {
-    theme: ThemeState,
-    cats: CatsState
+    theme: IThemeState,
+    cats: ICatsState
   };
 }
 
-const initialState: State = {
+const initialState: IState = {
   data: {
     theme,
     cats
