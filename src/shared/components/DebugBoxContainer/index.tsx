@@ -4,6 +4,7 @@ import ThemedButton from '../ThemedButton';
 import DebugUpdateBox from '../DebugUpdateBox';
 import DebugCatBox from '../DebugCatBox';
 import ColorPicker from '../ColorPicker';
+import { RouteComponentProps } from "@reach/router"
 
 let sub: any = {};
 
@@ -15,7 +16,9 @@ type DebugBoxTypes = {
   sub?: any,
 }
 
-class DebugBoxContainer extends Component<DebugBoxTypes, DebugBoxState> {
+
+
+class DebugBoxContainer extends Component<DebugBoxTypes, DebugBoxState, RouteComponentProps> {
   constructor(props:any) {
     super(props);
   }
