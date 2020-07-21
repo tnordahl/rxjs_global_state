@@ -1,13 +1,22 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import globalStore from '../../state/globalStore';
 
+let sub: any;
+let mounted = false;
+
 const ThemedButton:FunctionComponent = () => {
   const [globalState, setGlobalState] = useState(globalStore.state);
   const [primary, setPrimary] = useState(globalState.data.theme.inactiveColor);
   const [all, setAll] = useState(false);
 
   useEffect(()=> {
-    globalStore.subscribe(setGlobalState);
+    sub = globalStore.subscribe(setGlobalState);
+    mounted = true;
+    return function cleanup() {
+      mounted = false
+      sub.unsubscribe();
+      sub = null;
+    };
   },[]);
 
   useEffect(() => {

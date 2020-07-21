@@ -2,12 +2,21 @@ import React, { useEffect, useState } from 'react';
 import { SliderPicker } from 'react-color';
 import globalStore from '../../state/globalStore';
 
+let sub:any;
+let mounted = false;
+
 const ColorPicker = () => {
   const [globalState, setGlobalState] = useState(globalStore.state);
   const [primary, setPrimary] = useState(globalState.data.theme.activeColor);
 
   useEffect(()=> {
-    globalStore.subscribe(setGlobalState);
+    sub = globalStore.subscribe(setGlobalState);
+    mounted = true;
+    return function cleanup() {
+      mounted = false
+      sub.unsubscribe();
+      sub = null;
+    };
   },[]);
 
   useEffect(() => {
@@ -23,8 +32,6 @@ const ColorPicker = () => {
         color={ primary }
         onChange={
           (color:any, e:any) => {
-            // console.log('color:', color);
-            // console.log('e:', e);
             return globalStore.setBackgroundColor(color.hex);
           }
         }

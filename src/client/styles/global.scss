@@ -21,6 +21,17 @@ body {
   }
 }
 
+nav {
+  a {
+    margin: 0 10px;
+
+    &:hover {
+      text-decoration: overline;
+      background-color: lightblue;
+    }
+  }
+}
+
 @import 'DebugBox.module';
 @import 'DebugCat.module';
 @import 'SliderPicker';

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import globalStore from '../../state/globalStore';
 
+
+
 type DebugUpdateBoxTypes = {
   children:object,
   boxId: number,
@@ -10,10 +12,19 @@ type DebugUpdateBoxTypes = {
 const DebugUpdateBox = ({ children, boxId }: DebugUpdateBoxTypes) => {
   const [globalState, setGlobalState] = useState(globalStore.state);
   const [primary, setPrimary] = useState(globalState.data.theme.inactiveColor);
+  let sub: any;
+  let mounted = false;
 
   useEffect(()=> {
-    globalStore.subscribe(setGlobalState);
+    
+    sub = globalStore.subscribe(setGlobalState);
     globalStore.registerElement(boxId);
+    mounted = true;
+    return function cleanup() {
+      mounted = false
+      sub.unsubscribe();
+      sub = null;
+    };
   },[]);
 
   useEffect(() => {

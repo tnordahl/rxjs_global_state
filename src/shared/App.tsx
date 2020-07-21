@@ -6,16 +6,6 @@ import globalStore from './state/globalStore';
 import { Link } from "@reach/router"
 
 const App = () => {
-    // let history = useHistory();
-
-    // const goHome = () => {
-    //   history.push("/");
-    // }
-    
-    // const goAbout = () => {
-    //   history.push("/about");
-    // }
-
     useEffect(()=> {
       globalStore.init();
     },[]);
@@ -25,6 +15,7 @@ const App = () => {
       <nav>
         <Link to="/">Home</Link>
         <Link to="/about">About</Link>
+        <Link to="/cryptobot">CryptoBot</Link>
       </nav>
       <Root />
     </div>

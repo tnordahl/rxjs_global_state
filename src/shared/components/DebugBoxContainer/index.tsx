@@ -16,25 +16,12 @@ type DebugBoxTypes = {
   sub?: any,
 }
 
-
-
 class DebugBoxContainer extends Component<DebugBoxTypes, DebugBoxState, RouteComponentProps> {
   constructor(props:any) {
     super(props);
   }
 
-  tick() {
-    this.setState({
-      ...globalStore.state
-    });
-  }
-
-  // Before the component mounts, we initialise our state
-  componentWillMount() {
-    this.tick();
-  }
-
-  componentDidMount() {
+  componentDidMount = () => {
     sub = globalStore.subscribe(() => {
       this.setState({
         ...globalStore.state
@@ -42,13 +29,20 @@ class DebugBoxContainer extends Component<DebugBoxTypes, DebugBoxState, RouteCom
     });
   }
 
+  componentWillUnmount = () => {
+    sub.unsubscribe();
+    sub = null;
+  }
+
   render() {
     const Box0 = <ColorPicker />;
     const Box1 = <DebugCatBox />;
 
+    const colorCode = this.state ? this.state.data.theme.activeColor : 'Loading';
+
     return (
-      <div className={`App`} style={{backgroundColor: 'blue'}}>
-        <div className='color-header'>{this.state.data.theme.activeColor}</div>
+      <div className={`App debug-container`} style={{backgroundColor: 'blue'}}>
+        <div className='color-header'>{colorCode}</div>
         {
           Box0
         }
